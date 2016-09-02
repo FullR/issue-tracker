@@ -5,6 +5,6 @@ module.exports = requireReducer.keys().reduce((reducers, filename) => {
   const name = filename.split("/")[1]; // dash-case-name
   const id = camelCase(name);
   reducers[name] = requireReducer(filename);
-  console.log(`reducers[${name}] =`, reducers[name]);
+
   return reducers;
 }, {});
