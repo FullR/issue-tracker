@@ -8,7 +8,7 @@ module.exports = (port, apiPort) => {
       colors: true
     },
     proxy: {
-      "/api/": `http://localhost:${apiPort}`
+      "/api": `http://localhost:${apiPort}`
     }
   });
 
