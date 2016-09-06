@@ -1,48 +1,57 @@
 import actionRouter from "util/action-router";
 import request from "superagent";
+import {push} from "react-router-redux";
 
 module.exports = actionRouter({
-  loggedIn: false,
-  pendingUserCred: null,
   user: null,
-  error: null
+  error: null,
+  pending: false
 }, {
   LOGIN:{
-    create: (username, password) => (dispatch) => {
-      console.log(`Logging in as ${username} ${password}`);
+    create: (username, password, successRedirect, failRedirect) => (dispatch) => {
       request
         .post("/api/login")
         .set('Accept', 'application/json')
         .send({username, password})
         .end((error, res) => {
           if(error) {
-            console.log("Failed to login:", error);
             dispatch({type: "LOGIN_FAIL", error});
+            if(failRedirect) {
+              dispatch(push(failRedirect));
+            }
           } else {
-            console.log("Logged in!", res);
-            dispatch({type: "LOGIN_SUCCESS", user: res.data})
+            dispatch({type: "LOGIN_SUCCESS", user: res.data});
+            if(successRedirect) {
+              dispatch(push(successRedirect));
+            }
           }
         });
     }
   },
 
+  LOGIN_PENDING: {
+    reduce: (state) => ({
+      user: null,
+      error: null,
+      pending: true
+    })
+  },
+
   LOGIN_SUCCESS: {
     create: (user) => ({user}),
     reduce: (state, {user}) => ({
-      ...state,
       user,
-      loggedIn: true,
-      pendingUserCred: null
+      error: null,
+      pending: false
     })
   },
 
   LOGIN_FAIL: {
     create: (error) => ({error}),
     reduce: (state, {error}) => ({
-      loggedIn: false,
-      pendingUserCred: null,
       user: null,
-      error
+      error,
+      pending: false
     })
   }
 });

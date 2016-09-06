@@ -1,5 +1,6 @@
 import {combineReducers, applyMiddleware, createStore} from "redux";
-import {routerReducer} from "react-router-redux";
+import {routerReducer, routerMiddleware} from "react-router-redux";
+import {hashHistory} from "react-router";
 import thunk from "redux-thunk";
 import logger from "util/logger-middleware";
 import reducers from "./reducers";
@@ -10,7 +11,7 @@ const store = createStore(
       routing: routerReducer
     })
   ),
-  applyMiddleware(thunk, logger)
+  applyMiddleware(thunk, logger, routerMiddleware(hashHistory))
 );
 
 console.log(`Initial state =`, store.getState());
