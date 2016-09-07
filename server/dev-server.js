@@ -4,6 +4,7 @@ const config = require("../webpack.config");
 
 module.exports = (port, apiPort) => {
   const server = new WebpackDevServer(webpack(config), {
+    quiet: true,
     stats: {
       colors: true
     },

@@ -56,6 +56,8 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-howler": "^3.0.1",
@@ -65,6 +67,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "sequelize": "^3.24.1",
     "superagent": "^2.2.0"
   }
 }
