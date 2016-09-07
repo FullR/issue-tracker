@@ -14,15 +14,23 @@ export default class LoginForm extends React.Component {
   };
 
   render() {
-    const {children, className} = this.props;
+    const {user, error, children, className} = this.props;
     const {username, password} = this.state;
     const classNames = cx(className, "root");
 
     return (
       <div className={classNames}>
+        {user ?
+          <h1>{user.username}</h1> :
+          null
+        }
+        {error ?
+          <h1>{error.toString()}</h1> :
+          null
+        }
         <form onSubmit={this.handleSubmit}>
-          <TextField value={username} onChange={this.handleUsernameChange}/>
-          <TextField value={password} onChange={this.handlePasswordChange}/>
+          <TextField id="username" name="username" value={username} onChange={this.handleUsernameChange}/>
+          <TextField id="password" name="password" value={password} onChange={this.handlePasswordChange}/>
           <RaisedButton onClick={this.handleSubmit}>Login</RaisedButton>
         </form>
       </div>

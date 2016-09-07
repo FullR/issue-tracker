@@ -20,7 +20,8 @@ module.exports = actionRouter({
               dispatch(push(failRedirect));
             }
           } else {
-            dispatch({type: "LOGIN_SUCCESS", user: res.data});
+            console.log(res);
+            dispatch({type: "LOGIN_SUCCESS", user: res.body.user});
             if(successRedirect) {
               dispatch(push(successRedirect));
             }

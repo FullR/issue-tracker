@@ -1,4 +1,4 @@
-const knex = require("knex")({
+module.exports = require("knex")({
   client: "postgres",
   connection: {
     host     : "127.0.0.1",
@@ -8,5 +8,3 @@ const knex = require("knex")({
     charset  : "utf8"
   }
 });
-
-module.exports = require("bookshelf")(knex);

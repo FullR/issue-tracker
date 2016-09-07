@@ -2,8 +2,8 @@ import {connect} from "react-redux";
 import LoginForm from "components/login-form";
 import {actions} from "reducers/user";
 
-function mapStateToProps({user, loggedIn, error}) {
-  return {user, loggedIn, error};
+function mapStateToProps({user}) {
+  return user;
 }
 
 function mapDispatchToProps(dispatch) {

@@ -4,8 +4,6 @@ import {Router, Route, IndexRoute, hashHistory} from "react-router";
 import {syncHistoryWithStore} from "react-router-redux";
 import store from "store";
 
-import TicketPage from "containers/ticket-page";
-import CountForm from "containers/count-form";
 import LoginForm from "containers/login-form";
 
 const history = syncHistoryWithStore(hashHistory, store);
@@ -15,8 +13,8 @@ export default function AppRouter() {
     <Provider store={store}>
       <Router history={history}>
         <Route path="/login" component={LoginForm}/>
-        <Route path="/counter" component={CountForm}/>
-        <Route path="*" component={TicketPage}/>
+        <Route path="/counter" component={LoginForm}/>
+        <Route path="*" component={LoginForm}/>
       </Router>
     </Provider>
   );
