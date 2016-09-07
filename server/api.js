@@ -5,12 +5,9 @@ module.exports = () => {
   const passport = require("passport");
   const express = require("express");
   const router = express.Router();
+  const auth = passport.authenticate("local");
 
-  router.get("/foo", (req, res) => {
-    res.send("bar");
-  });
-
-  router.post("/login", passport.authenticate("local"), (req, res) => {
+  router.post("/login", auth, (req, res) => {
     res.json({success: true, user: req.user});
   });
 
